@@ -4,20 +4,20 @@ import { authService } from "fbInstance";
 
 function App() {
   const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+  const [userObj, setUserObj] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user){
-        setIsLoggedIn(true);
+        setUserObj(user);
       }else{
-        setIsLoggedIn(false);
+        setUserObj(null);
       }
       setInit(true);
     });
   }, []);
   return (
     <>
-     {init ? <AppRouter isLoggedIn = {isLoggedIn}/> : "Initializing..."}
+     {init ? <AppRouter isLoggedIn = {Boolean(userObj)} userObj={userObj} /> : "Initializing..."}
       <footer>&copy; IGKRN {new Date().getFullYear()}</footer>
     </>
   );
