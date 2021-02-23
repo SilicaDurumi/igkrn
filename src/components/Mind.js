@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { dbService } from "fbInstance";
+import { dbService, storageService } from "fbInstance";
 
 const Mind = ({mindObj, isOwner}) => {
     const [editing, setEditing] = useState(false);
@@ -9,6 +9,9 @@ const Mind = ({mindObj, isOwner}) => {
         if(ok){
             //delete mind
            await dbService.doc(`minds/${mindObj.id}`).delete();
+           if(mindObj.attachmentUrl !== "" ){
+               await storageService.refFromURL(mindObj.attachmentUrl).delete();
+            }
         }
     };
     const toggleEditing = () => setEditing((prev)  => !prev);
@@ -45,6 +48,9 @@ const Mind = ({mindObj, isOwner}) => {
             ) : (
              <>
             <h4>{mindObj.text}</h4>
+                {mindObj.attachmentUrl && (
+                    <img src={mindObj.attachmentUrl} width="50px" height="50px" />
+                )}
                 {isOwner && ( 
                     <>
                         <button onClick={onDeleteClick}>Delete Mind</button>
