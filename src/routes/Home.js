@@ -17,9 +17,9 @@ const Home = ({ userObj }) => {
     }, []);
 
     return (
-     <div>
+     <div className="container">
          <MindFactory userObj={userObj}/>
-        <div>
+        <div style={{ marginTop: 30 }}>
             {minds.map((mind) => (
             <Mind 
                 key={mind.id} 

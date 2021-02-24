@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { dbService, storageService } from "fbInstance";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Mind = ({mindObj, isOwner}) => {
     const [editing, setEditing] = useState(false);
@@ -31,31 +33,36 @@ const Mind = ({mindObj, isOwner}) => {
     };
 
     return (
-    <div>
+    <div className="mind">
         {editing ? (
             <>
                 {isOwner && (
                 <>
-                <form onSubmit={onSubmit}>
-                <input type="text" placeholder="Edit Your Mind" value={newMind} required 
-                onChange={onChange}/>
-                <input type="submit" value="Update Mind" />
+                <form onSubmit={onSubmit} className="container mindEdit">
+                <input type="text" placeholder="Edit Your Mind" value={newMind} required autoFocus
+                onChange={onChange} className="formInput"/>
+                <input type="submit" value="Update Mind" className="formBtn"/>
                 </form>
-                <button onClick={toggleEditing}>Cancel</button> 
+                <span onClick={toggleEditing} className="formBtn cancelBtn">
+                    Cancel
+                </span>
                 </>
              )}
             </>
             ) : (
              <>
             <h4>{mindObj.text}</h4>
-                {mindObj.attachmentUrl && (
-                    <img src={mindObj.attachmentUrl} width="50px" height="50px" />
-                )}
+            {mindObj.attachmentUrl && <img src={mindObj.attachmentUrl} />}
+
                 {isOwner && ( 
-                    <>
-                        <button onClick={onDeleteClick}>Delete Mind</button>
-                        <button onClick={toggleEditing}>Edit Mind</button>
-                    </>
+                    <div class="mind__actions">
+                        <span onClick={onDeleteClick}>
+                            <FontAwesomeIcon icon={faTrash} />
+                        </span>
+                        <span onClick={toggleEditing}>
+                            <FontAwesomeIcon icon={faPencilAlt} />
+                        </span>
+                    </div>
                 )}
             </>
            )}
