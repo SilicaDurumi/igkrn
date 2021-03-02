@@ -32,6 +32,15 @@ form {
   width: 100%;
 }
 
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#root {
+  padding: 1rem 1rem;
+}
+
 .mind-input::placeholder {
   color: white;
   opacity: 0.9;
@@ -85,6 +94,36 @@ form {
 }
 
 /* Nwitter Factory */
+
+.profile__img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #04aaff;
+  margin: 2rem auto;
+}
+
+.profile__img__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  color: #04aaff;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #04aaff;
+}
+
+.profile__label {
+  color: #04aaff;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.profile__label span {
+  margin-right: 5px;
+}
 
 .factoryForm {
   display: flex;
@@ -160,6 +199,11 @@ form {
 }
 
 /* mind */
+
+.mind_userName {
+  color: black;
+  margin-bottom: 15px;
+}
 
 .mindEdit .formBtn {
   cursor: pointer;

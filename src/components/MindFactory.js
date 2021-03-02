@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {v4 as uuidv4 } from "uuid";
-import { dbService, storageService } from "fbInstance";
+import { dbService, storageService } from "../fbInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,7 +12,8 @@ const MindFactory = ({ userObj }) => {
       return;
     }
     event.preventDefault();
-
+    
+    //// upload mind to collection
     let attachmentUrl = "";
     if (attachment !== "") {
         const attachmentRef = storageService
@@ -22,6 +23,7 @@ const MindFactory = ({ userObj }) => {
         attachmentUrl = await response.ref.getDownloadURL();
     }
     const mindObj = {
+        displayName: userObj.displayName,
         text:mind,
         createdAt: Date.now(),
         creatorId: userObj.uid,
@@ -30,6 +32,7 @@ const MindFactory = ({ userObj }) => {
     await dbService.collection("minds").add(mindObj);
     setMind("");
     setAttachment("");
+    ////
    };
     const onChange = (event) => {
         const { target:{value}} = event;
@@ -46,7 +49,7 @@ const MindFactory = ({ userObj }) => {
       const {currentTarget: { result },} = finishedEvent;
       setAttachment(result);
     };
-    reader.readAsDataURL(theFile);
+    console.log(reader.readAsDataURL(theFile));
    };
   const onClearAttachment = () => 
       //when user attach non image file execute this
@@ -76,7 +79,7 @@ const MindFactory = ({ userObj }) => {
               style={{opacity: 0, }} />
              {attachment && (
                   <div className="factoryForm__attachment">
-                    <img src={attachment} style={{backgroundImage: attachment,}} />
+                    <img src={attachment} style={{backgroundImage: attachment,}} alt="userImg" />
                     <div className="factoryForm__clear" onClick={onClearAttachment}>
                       <span>Remove</span>
                       <FontAwesomeIcon icon={faTimes} />

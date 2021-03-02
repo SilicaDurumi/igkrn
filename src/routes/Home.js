@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { dbService, storageService } from "../fbInstance";
-import Mind from "components/Mind";
-import MindFactory from "components/MindFactory";
+import { dbService } from "../fbInstance";
+import Mind from "../components/Mind";
+import MindFactory from "../components/MindFactory";
 
 const Home = ({ userObj }) => {
     const [minds, setMinds] = useState([]);
@@ -25,6 +25,8 @@ const Home = ({ userObj }) => {
                 key={mind.id} 
                 mindObj={mind} 
                 isOwner={mind.creatorId === userObj.uid}
+                isCreator={userObj.uid === mind.creatorId}
+                userObj={userObj}
                 />
             ))}
         </div>

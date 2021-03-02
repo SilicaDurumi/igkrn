@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { authService } from "fbInstance";
+import { authService } from "../fbInstance";
 
 const inputStyles = {};
 

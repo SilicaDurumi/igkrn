@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { dbService, storageService } from "fbInstance";
+import { dbService, storageService } from "../fbInstance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Mind = ({mindObj, isOwner}) => {
     const [editing, setEditing] = useState(false);
     const [newMind, setNewMind] = useState(mindObj.text);
+
     const onDeleteClick = async () => {
         const ok = window.confirm("Are You Sure want to Delete?");
         if(ok){
@@ -18,6 +19,7 @@ const Mind = ({mindObj, isOwner}) => {
     };
     const toggleEditing = () => setEditing((prev)  => !prev);
     const onSubmit = async (event) =>{
+        console.log(mindObj.email);
         //when user push enter or Edit Mind
         event.preventDefault();
         await dbService.doc(`minds/${mindObj.id}`).update({
@@ -33,7 +35,9 @@ const Mind = ({mindObj, isOwner}) => {
     };
 
     return (
+
     <div className="mind">
+        <span className="mind_userName">{mindObj.displayName}</span>
         {editing ? (
             <>
                 {isOwner && (
@@ -52,8 +56,7 @@ const Mind = ({mindObj, isOwner}) => {
             ) : (
              <>
             <h4>{mindObj.text}</h4>
-            {mindObj.attachmentUrl && <img src={mindObj.attachmentUrl} />}
-
+            {mindObj.attachmentUrl && <img src={mindObj.attachmentUrl} alt="userImg" />}
                 {isOwner && ( 
                     <div class="mind__actions">
                         <span onClick={onDeleteClick}>

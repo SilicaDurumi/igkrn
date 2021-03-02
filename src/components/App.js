@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import AppRouter from "components/Router";
-import { authService } from "fbInstance";
+import AppRouter from "./Router";
+import { authService } from "../fbInstance";
 
 function App() {
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState(null);
+
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user){
          setUserObj({
           displayName: user.displayName,
           uid: user.uid,
+          photoURL: user.providerData[0].photoURL || null,
           updateProfile: (args) => user.updateProfile(args),
         });
       }else{
@@ -25,6 +27,7 @@ function App() {
     setUserObj({
       displayName: user.displayName,
       uid: user.uid,
+      photoURL: user.photoURL,
       updateProfile: (args) => user.updateProfile(args),
     });
   };
