@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faGoogle,faGithub,} from "@fortawesome/free-brands-svg-icons";
 import { faBrain } from "@fortawesome/free-solid-svg-icons";
@@ -20,12 +21,14 @@ const Auth = () => {
     };
     return (
         <div className="authContainer">
-            <FontAwesomeIcon
-                icon={faBrain}
-                color={"#04AAFF"}
-                size="3x"
-                style={{ marginBottom: 30 }}
-            />
+            <Link to="/" style={{ marginRight: 10 }}>
+                <FontAwesomeIcon
+                    icon={faBrain}
+                    color={"#04AAFF"}
+                    size="3x"
+                    style={{ marginBottom: 30 }}
+                />
+            </Link>
             <AuthForm />
                 <div className="authBtns">
                     <button onClick={onSocialClick} name="google" className="authBtn">

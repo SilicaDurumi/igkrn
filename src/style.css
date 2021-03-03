@@ -54,7 +54,6 @@ footer {
 }
 
 .formInput {
-  width: 100%;
   padding: 10px 20px;
   border-radius: 20px;
   border: 1px solid black;
@@ -65,13 +64,11 @@ footer {
 
 .formBtn {
   cursor: pointer;
-  width: 100%;
   padding: 7px 20px;
   text-align: center;
   color: white;
   border-radius: 20px;
   background-color: #04aaff;
-  cursor: pointer;
 }
 
 .cancelBtn {
@@ -154,6 +151,7 @@ footer {
 }
 
 .factoryInput__arrow {
+  cursor: pointer;
   position: absolute;
   right: 0;
   background-color: #04aaff;
@@ -161,7 +159,7 @@ footer {
   width: 40px;
   padding: 10px 0px;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 40px;
   color: white;
 }
 
@@ -239,9 +237,10 @@ footer {
 }
 
 .mind__actions {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
 }
 
 .mind__actions span {
@@ -257,7 +256,7 @@ footer {
 .authContainer {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 70vh;
   justify-content: center;
   align-items: center;
 }
@@ -285,7 +284,6 @@ footer {
 
 .authInput {
   max-width: 320px;
-  width: 100%;
   padding: 10px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
@@ -309,11 +307,12 @@ footer {
   font-size: 12px;
 }
 
-.authSwitch {
+.authSwitch,
+.passwordReset {
   color: #04aaff;
   cursor: pointer;
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   display: block;
   font-size: 12px;
   text-decoration: underline;
