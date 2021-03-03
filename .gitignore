@@ -28,3 +28,5 @@ database.rules.json
 .firebaserc
 firebase.json
 public/404.html
+
+/.firebase
