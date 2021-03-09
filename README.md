@@ -1,3 +1,8 @@
+https://mindblowing.ga/
+
+Google Firebase, React를 사용한 웹 프로젝트
+소통을 위한 커뮤니티의 역할을 할 예정
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
